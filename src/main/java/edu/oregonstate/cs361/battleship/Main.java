@@ -13,12 +13,14 @@ import static spark.Spark.staticFiles;
 public class Main {
 
     BattleshipModel bm;
+    static String type;
 
     public static void main(String[] args) {
         staticFiles.location("/public");
 
         //This will listen to GET requests to /model and return a clean new model
         get("/model/:mode", (req, res) -> newModel(req));
+
         //This will listen to POST requests and expects to receive a game model, as well as location to fire to
         post("/fire/:row/:col", (req, res) -> fireAt(req));
         //This will listen to POST requests and expects to receive a game model, as well as location to scan
@@ -33,10 +35,13 @@ public class Main {
 
         // Choose mode
         if (mode.equals("Hard")){
+            type = "Hard";
             Hard bm = new Hard();
             Gson gson = new Gson();
             return gson.toJson(bm);
         }
+
+        type = "Easy";
 
         Easy bm = new Easy();
 
@@ -54,7 +59,11 @@ public class Main {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return gson.fromJson(result, BattleshipModel.class);
+        if(type.equals("Hard")) {
+            return gson.fromJson(result, Hard.class);
+        } else {
+            return gson.fromJson(result, Easy.class);
+        }
     }
 
     //This controller

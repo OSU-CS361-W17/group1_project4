@@ -9,7 +9,10 @@ import java.util.StringJoiner;
  */
 public class Easy extends BattleshipModel{
 
+    int factor;
+
     public Easy(){
+        factor = 1;
         playerHits = new ArrayList<>();
         playerMisses= new ArrayList<>();
         computerHits = new ArrayList<>();
@@ -43,54 +46,30 @@ public class Easy extends BattleshipModel{
 
     @Override
     public void shootAtPlayer(){
-        int max = 10, min = 1, row = 0, col = 0;
-        Coordinate coor = new Coordinate(row, col);
-        //firing on 0 and even numbers
-        for(int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j = j + 2) {
-                coor.setDown(i);
-                coor.setAcross(j);
+        int max = 10;
+        int min = 1;
 
-                //check for duplicates
-                for(ShotData s : computerHits){
-                    if(s.loc.getAcross() == coor.getAcross() && s.loc.getDown() == coor.getDown()){
-                        shootAtPlayer();
-                        playerShot(coor);
-                        return;
-                    }
-                }
-                for(ShotData s : computerMisses){
-                    if(s.loc.getAcross() == coor.getAcross() && s.loc.getDown() == coor.getDown()){
-                        shootAtPlayer();
-                        playerShot(coor);
-                        return;
-                    }
-                }
+        int randRow = factor + min;
+        int randCol = factor + min;
+        factor++;
+        Coordinate coor = new Coordinate(randRow, randCol);
+
+        // Check for duplicates
+        for (ShotData s: computerHits) {
+            if(s.loc.getAcross() == coor.getAcross() && s.loc.getDown() == coor.getDown()){
+                shootAtPlayer();
+                playerShot(coor);
+                return;
+            }
+        }
+        for (ShotData s: computerMisses) {
+            if(s.loc.getAcross() == coor.getAcross() && s.loc.getDown() == coor.getDown()){
+                shootAtPlayer();
+                playerShot(coor);
+                return;
             }
         }
         playerShot(coor);
-        for(int i = 0; i < 10; i++){
-            for(int j = 1; j < 10; j=j+2){
-                coor.setDown(i);
-                coor.setAcross(j);
-
-                //check for duplicates
-                for(ShotData s : computerHits){
-                    if(s.loc.getAcross() == coor.getAcross() && s.loc.getDown() == coor.getDown()){
-                        shootAtPlayer();
-                        playerShot(coor);
-                        return;
-                    }
-                }
-                for(ShotData s : computerMisses){
-                    if(s.loc.getAcross() == coor.getAcross() && s.loc.getDown() == coor.getDown()){
-                        shootAtPlayer();
-                        playerShot(coor);
-                        return;
-                    }
-                }
-            }
-        }
     }
 }
 
