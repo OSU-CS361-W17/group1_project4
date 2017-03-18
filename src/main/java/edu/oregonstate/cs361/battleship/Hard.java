@@ -25,7 +25,112 @@ public class Hard extends BattleshipModel{
     private int BOARD_SIZE = 10;     //Board dimensions
     private Random random = new Random();
 
-    
+
+
+    public Hard () {
+
+        System.out.println("constructing hard mode");
+
+        playerHits = new ArrayList<>();
+        playerMisses= new ArrayList<>();
+        computerHits = new ArrayList<>();
+        computerMisses= new ArrayList<>();
+
+        aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+        battleship = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+        submarine = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+        clipper = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
+        dhingy = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
+        fisher = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
+
+        computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(1,1),new Coordinate(5,1));
+        computer_battleship = new StealthShip("Computer_Battleship",4, new Coordinate(5,5),new Coordinate(2,5));
+        computer_submarine = new StealthShip("Computer_Submarine",2, new Coordinate(8,8),new Coordinate(10,8));
+        computer_clipper = new CivilianShip("Computer_Clipper", 3, new Coordinate(10, 6), new Coordinate(10, 9));
+        computer_dhingy = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
+        computer_fisher = new CivilianShip("Computer_Fisher", 2, new Coordinate(9, 1), new Coordinate(10, 1));
+
+        Random random = new Random();
+        String x, y;
+        int max = BOARD_SIZE; //bojack: usually these types of variables would be global constants instead of local ints
+        int min = 1;  //that way if we wanted to expand the board to 25x25 we would only have to change the constants
+        //you're also using these values elsewhere in the file. that's why I mention it.
+
+        int randIterator = random.nextInt(2) + 1;   //random num 1 or 2
+        int randRow, randCol;
+        int rowint, colInt;
+        for(int i = 0; i < 6; i++){
+
+            //randomize start place of ship without collision
+            randRow = random.nextInt(max - min + 1) + min;
+            randCol = random.nextInt(max - min + 1) + min;
+
+            while(!noCollision(randRow, randCol, direction[randIterator], shipName[i])) {
+                randRow = random.nextInt(max - min + 1) + min;
+                randCol = random.nextInt(max - min + 1) + min;
+                randIterator = random.nextInt(2) + 1;
+
+                System.out.println("checking loop");
+                System.out.println(randRow);
+                System.out.println(randCol);
+            }
+
+            System.out.println("break out of loop");
+            System.out.println(randRow);
+            System.out.println(randCol);
+
+            //convert our randomized coordinates to a string for placeShip function
+            x = String.valueOf(randRow);
+            y = String.valueOf(randCol);
+
+            rowint = Integer.parseInt(x);
+            colInt = Integer.parseInt(y);
+
+
+
+            //place the ship, should be able to place without collision
+            if(direction[randIterator].equals("horizontal")){
+
+                System.out.println("placing ship horizontally");
+
+                if (shipName[i].equalsIgnoreCase("aircraftcarrier")) {
+                    computer_aircraftCarrier.setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
+                } else if(shipName[i].equalsIgnoreCase("battleship")) {
+                    computer_battleship.setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
+                } else if(shipName[i].equalsIgnoreCase("dhingy")) {
+                    computer_dhingy.setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
+                } else if(shipName[i].equalsIgnoreCase("clipper")) {
+                    computer_clipper.setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 2));
+                } else if(shipName[i].equalsIgnoreCase("fisher")){
+                    computer_fisher.setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 1));
+                }else if(shipName[i].equalsIgnoreCase("submarine")) {
+                    computer_submarine.setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 1));
+                }
+            }else{
+
+                System.out.println("placing ship vertically");
+
+                //vertical
+                if (shipName[i].equalsIgnoreCase("aircraftcarrier")) {
+                    computer_aircraftCarrier.setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
+                } else if(shipName[i].equalsIgnoreCase("battleship")) {
+                    computer_battleship.setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
+                } else if(shipName[i].equalsIgnoreCase("dhingy")) {
+                    computer_dhingy.setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
+                } else if(shipName[i].equalsIgnoreCase("clipper")) {
+                    computer_clipper.setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 2, colInt));
+                } else if(shipName[i].equalsIgnoreCase("fisher")){
+                    computer_fisher.setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 1, colInt));
+                } else if(shipName[i].equalsIgnoreCase("submarine")) {
+                    computer_submarine.setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 1, colInt));
+                }
+            }
+
+            System.out.println("computer is placing ships");
+        }
+
+    }
+
     /*bojack: this method is clever, preventing the ships from existing in the same squares. Good job*/
     //function follows the noCollision. It checks the opposite direction of what was tested in noCollision
     public boolean checkDecrement(int Row, int Col, String direction, int length, int start){    //checks decrement for noCollision function
@@ -50,6 +155,8 @@ public class Hard extends BattleshipModel{
     //function checks for collisions with random placement
     //returns validity of ship placement
     public boolean noCollision(int Row, int Col, String direction, String shipName){
+        System.out.println("checking for collisions");
+
         int length=0;
         int start;
         //get length of ship
@@ -81,45 +188,6 @@ public class Hard extends BattleshipModel{
             else if(direction.equals("horizontal")) board[Row][i] = 1;
         }
 
-        return true;
-    }
-
-    /*bojack: this function may end up being in a different class.*/
-    /*wongnich: I was thinking about that, but the easy mode and hard mode have different ship placement attributes*/
-    //places ships randomly
-    public void computerplaceShips() {
-        Random random = new Random();
-        String x, y;
-        int max = 10; //bojack: usually these types of variables would be global constants instead of local ints
-        int min = 1;  //that way if we wanted to expand the board to 25x25 we would only have to change the constants
-                      //you're also using these values elsewhere in the file. that's why I mention it.
-
-        int randIterator = random.nextInt(2) + 1;   //random num 1 or 2
-        int randRow = random.nextInt(max - min + 1) + min, randCol = random.nextInt(max - min + 1) + min;
-
-        for(int i = 0; i < 6; i++){
-            //randomize start place of ship without collision
-            while(!noCollision(randRow, randCol, direction[randIterator], shipName[i])) {
-                randRow = random.nextInt(max - min + 1) + min;
-                randCol = random.nextInt(max - min + 1) + min;
-                randIterator = random.nextInt(2) + 1;
-            }
-            //convert our randomized coordinates to a string for placeShip function
-            x = String.valueOf(randRow);
-            y = String.valueOf(randCol);
-
-            //place the ship, should be able to place without collision
-            placeShip(shipName[i], x, y, direction[randIterator]);
-        }
-
-    }
-
-    //function to check whether computer has shot there or not
-    //returns validity of shot
-    public boolean checkShot(Coordinate coor){
-        //if computer has shot there before
-        if(computerHits.contains(coor) || computerMisses.contains(coor))    return false;
-        //otherwise computer has not yet shot there
         return true;
     }
 
