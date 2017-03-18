@@ -45,7 +45,7 @@ public class Main {
     }
 
     //This function accepts an HTTP request and deserializes it into an actual Java object.
-    private static Easy getModelFromReq(Request req){
+    private static BattleshipModel getModelFromReq(Request req){
         Gson gson = new Gson();
         String result = "";
         try {
@@ -53,12 +53,12 @@ public class Main {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return gson.fromJson(result, Easy.class);
+        return gson.fromJson(result, BattleshipModel.class);
     }
 
     //This controller
     private static String placeShip(Request req) {
-        Easy currModel = getModelFromReq(req);
+        BattleshipModel currModel = getModelFromReq(req);
         String id = req.params("id");
         String row = req.params("row");
         String col = req.params("col");
@@ -70,7 +70,7 @@ public class Main {
     }
 
     private static String fireAt(Request req) {
-        Easy currModel = getModelFromReq(req);
+        BattleshipModel currModel = getModelFromReq(req);
 
         String row = req.params("row");
         String col = req.params("col");
@@ -86,7 +86,7 @@ public class Main {
 
     private static String scan(Request req) {
 
-        Easy currModel = getModelFromReq(req);
+        BattleshipModel currModel = getModelFromReq(req);
         String row = req.params("row");
         String col = req.params("col");
         int rowInt = Integer.parseInt(row);

@@ -22,7 +22,6 @@ public class Easy extends BattleshipModel{
         dhingy = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
         fisher = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
 
-
         computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(1,1),new Coordinate(5,1));
         computer_battleship = new StealthShip("Computer_Battleship",4, new Coordinate(5,5),new Coordinate(2,5));
         computer_submarine = new StealthShip("Computer_Submarine",2, new Coordinate(8,8),new Coordinate(10,8));
@@ -32,9 +31,6 @@ public class Easy extends BattleshipModel{
     }
 
     //place ships
-    public void computerplaceShips() {
-       
-  }
 
 
     /*The function will fire on every other tile. FIRST, it will cover 0 and even numbered tiles
