@@ -84,6 +84,7 @@ public class Easy extends BattleshipModel{
      *Then it will fire down in the same fashion stated above
      */
 
+    @Override
     public void shootAtPlayer(){
         int max = 10, min = 1, row = 0, col = 0;
         Coordinate coor = new Coordinate(row, col);
