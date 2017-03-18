@@ -87,6 +87,8 @@ public class Hard extends BattleshipModel{
     /*bojack: this function may end up being in a different class.*/
     /*wongnich: I was thinking about that, but the easy mode and hard mode have different ship placement attributes*/
     //places ships randomly
+
+    //I think this may need to be the same name as the function in battleshipmodel, what do you guys think?
     public void place() {
         Random random = new Random();
         String x, y;
@@ -114,14 +116,17 @@ public class Hard extends BattleshipModel{
 
     }
 
-    //function to check whether computer has shot there or not
+
+    //dont need this function
+
+    /*//function to check whether computer has shot there or not
     //returns validity of shot
     public boolean checkShot(Coordinate coor){
         //if computer has shot there before
         if(computerHits.contains(coor) || computerMisses.contains(coor))    return false;
         //otherwise computer has not yet shot there
         return true;
-    }
+    }*/
 
     //Function will randomly fire at player (no duplicate shots)
     public void randFire(int max, int min){

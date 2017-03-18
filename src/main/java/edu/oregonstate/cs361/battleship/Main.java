@@ -33,12 +33,15 @@ public class Main {
         // Choose mode
         if (mode.equals("Hard")){
             bm = new Hard();
+
         } else {
             bm = new Easy();
+
         }
 
         Gson gson = new Gson();
         return gson.toJson(bm);
+
     }
 
     //This function accepts an HTTP request and deserializes it into an actual Java object.
