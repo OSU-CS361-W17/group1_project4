@@ -34,7 +34,7 @@ public class Easy extends BattleshipModel{
     //place ships
     public void computerplaceShips() {
        
-  }
+    }
 
 
     /*The function will fire on every other tile. FIRST, it will cover 0 and even numbered tiles
