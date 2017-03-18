@@ -113,6 +113,10 @@ public class BattleshipModel {
         }
     }
 
+    public void computerplaceShips() {
+
+    }
+
     public void addToMilitaryHitList(Ship x, Coordinate coor, ArrayList<ShotData> z){
 
         ShotData temp = new ShotData (coor, x.type);
