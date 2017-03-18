@@ -10,20 +10,20 @@ import java.util.Random;
 
 public class BattleshipModel {
 
-    private Ship aircraftCarrier;// = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship battleship;// = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship submarine;// = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship clipper;// = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
-    private Ship dhingy;// = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
-    private Ship fisher;// = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
+    protected Ship aircraftCarrier;// = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship battleship;// = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship submarine;// = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship clipper;// = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
+    protected Ship dhingy;// = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
+    protected Ship fisher;// = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
 
 
-    private Ship computer_aircraftCarrier;// = new Ship("Computer_AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship computer_battleship;// = new StealthShip("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
-    private Ship computer_submarine;// = new StealthShip("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
-    private Ship computer_clipper;// = new CivilianShip("Computer_Clipper", 3, new Coordinate(1, 1), new Coordinate(1, 3));
-    private Ship computer_dhingy;// = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
-    private Ship computer_fisher;// = new CivilianShip("Computer_Fisher", 2, new Coordinate(7, 1), new Coordinate(7, 2));
+    protected Ship computer_aircraftCarrier;// = new Ship("Computer_AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship computer_battleship;// = new StealthShip("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
+    protected Ship computer_submarine;// = new StealthShip("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
+    protected Ship computer_clipper;// = new CivilianShip("Computer_Clipper", 3, new Coordinate(1, 1), new Coordinate(1, 3));
+    protected Ship computer_dhingy;// = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
+    protected Ship computer_fisher;// = new CivilianShip("Computer_Fisher", 2, new Coordinate(7, 1), new Coordinate(7, 2));
 
 
     ArrayList<ShotData> playerHits;
