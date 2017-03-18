@@ -8,25 +8,6 @@ import java.util.StringJoiner;
  * Created by guita on 3/13/2017.
  */
 public class Easy extends BattleshipModel{
-    
-    private Ship aircraftCarrier;
-    private Ship battleship;
-    private Ship submarine;
-    private Ship clipper;
-    private Ship dhingy;
-    private Ship fisher;
-
-    private Ship computer_aircraftCarrier;
-    private Ship computer_battleship;
-    private Ship computer_submarine;
-    private Ship computer_clipper;
-    private Ship computer_dhingy;
-    private Ship computer_fisher;
-
-    ArrayList<ShotData> playerHits;
-    ArrayList<ShotData> playerMisses;
-    ArrayList<ShotData> computerHits;
-    ArrayList<ShotData> computerMisses;
 
     public Easy(){
         playerHits = new ArrayList<>();
