@@ -162,7 +162,7 @@ public class BattleshipModel {
     }
 
     public void shootAtPlayer() {
-
+        /*
         int max = 10;
         int min = 1;
         Random random = new Random();
@@ -186,6 +186,7 @@ public class BattleshipModel {
             }
         }
         playerShot(coor);
+        */
     }
 
 
