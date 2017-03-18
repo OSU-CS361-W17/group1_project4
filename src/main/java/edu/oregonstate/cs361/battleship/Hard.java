@@ -92,7 +92,7 @@ public class Hard extends BattleshipModel{
     public void place() {
         Random random = new Random();
         String x, y;
-        int max = 10; //bojack: usually these types of variables would be global constants instead of local ints
+        int max = BOARD_SIZE; //bojack: usually these types of variables would be global constants instead of local ints
         int min = 1;  //that way if we wanted to expand the board to 25x25 we would only have to change the constants
                       //you're also using these values elsewhere in the file. that's why I mention it.
 
