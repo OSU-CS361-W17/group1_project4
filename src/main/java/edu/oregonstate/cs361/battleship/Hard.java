@@ -88,8 +88,9 @@ public class Hard extends BattleshipModel{
     /*wongnich: I was thinking about that, but the easy mode and hard mode have different ship placement attributes*/
     //places ships randomly
 
-    //I think this may need to be the same name as the function in battleshipmodel, what do you guys think?
-    public void place() {
+    //I think this may need to be the same name as the function in battleshipmodel, what do you guys think
+
+    public void computerplaceShips() {
         Random random = new Random();
         String x, y;
         int max = BOARD_SIZE; //bojack: usually these types of variables would be global constants instead of local ints
@@ -179,7 +180,6 @@ public class Hard extends BattleshipModel{
     }
 
     //Function will fire "smartly"
-    @Override
     public void shootAtPlayer(){
         int max = BOARD_SIZE;
         int min = 1;

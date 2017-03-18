@@ -1,5 +1,6 @@
 package edu.oregonstate.cs361.battleship;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.StringJoiner;
 
@@ -7,74 +8,30 @@ import java.util.StringJoiner;
  * Created by guita on 3/13/2017.
  */
 public class Easy extends BattleshipModel{
-    //place ships
-    private String[] shipName = {"aircraftCarrier", "battleship", "submarine", "dhingy", "clipper", "fisher"};
 
-    private int convertToInt(){
+    public Easy(){
+        playerHits = new ArrayList<>();
+        playerMisses= new ArrayList<>();
+        computerHits = new ArrayList<>();
+        computerMisses= new ArrayList<>();
 
-        return 0;
+        aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+        battleship = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+        submarine = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+        clipper = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
+        dhingy = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
+        fisher = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
+
+        computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(1,1),new Coordinate(5,1));
+        computer_battleship = new StealthShip("Computer_Battleship",4, new Coordinate(5,5),new Coordinate(2,5));
+        computer_submarine = new StealthShip("Computer_Submarine",2, new Coordinate(8,8),new Coordinate(10,8));
+        computer_clipper = new CivilianShip("Computer_Clipper", 3, new Coordinate(10, 6), new Coordinate(10, 9));
+        computer_dhingy = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
+        computer_fisher = new CivilianShip("Computer_Fisher", 2, new Coordinate(9, 1), new Coordinate(10, 1));
     }
 
     //place ships
-    public void ComputerPlaceShip() {
-        String x = "0", y = "0";
-        int numX = 0, numY = 0, z = 0;    //x = x-coord, y = y-coord, z = helper in placing
 
-        //need to send all string variable to BattleshipModel.placd()
-        for(int i = 0; i < 6; i++){
-            //first place aircraftCarrier
-            placeShip(shipName[i], x, y, "down");
-
-            if(i == 0){
-                int placeHolder;
-            }
-            //then place battleship 4 spots to right and down
-            else if(i == 1){
-                numX = Integer.parseInt(x);
-                numY = Integer.parseInt(y);
-
-                numX = numX + 4;
-                numY = numY + 4;
-
-                x = String.valueOf(numX);
-                y = String.valueOf(numY);
-            }
-            //then place submarine 3 spots right and down
-            else if(i == 2){
-                numX = Integer.parseInt(x);
-                numY = Integer.parseInt(y);
-
-                numX = numX + 3;
-                numY = numY + 3;
-
-                x = String.valueOf(numX);
-                y = String.valueOf(numY);
-            }
-            //then place dhingy in bottom right corner
-            else if(i == 3){
-                numX = numY = 9;
-
-                x = String.valueOf(numX);
-                y = String.valueOf(numY);
-            }
-            //then place fisher top right corner
-            else if(i == 4){
-                numX = 0;
-                numY = 9;
-
-                x = String.valueOf(numX);
-                y = String.valueOf(numY);
-            }
-            //then place clipper lower right hand corner
-            else if(i == 5){
-                numX = 9;
-                numY = 0;
-
-                x = String.valueOf(numX);
-                y = String.valueOf(numY);
-            }
-        }
-    }
 
     /*The function will fire on every other tile. FIRST, it will cover 0 and even numbered tiles
      *i.e. array[0][0], array[0][2], array[0][4]...

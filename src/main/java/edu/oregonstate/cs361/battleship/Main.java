@@ -12,6 +12,8 @@ import static spark.Spark.staticFiles;
 
 public class Main {
 
+    BattleshipModel bm;
+
     public static void main(String[] args) {
         staticFiles.location("/public");
 
@@ -26,18 +28,17 @@ public class Main {
     }
 
     //This function returns a new model
-    private static String newModel(Request req) {
+    public static String newModel(Request req) {
         String mode = req.params("mode");
-        BattleshipModel bm;
 
         // Choose mode
         if (mode.equals("Hard")){
-            bm = new Hard();
-
-        } else {
-            bm = new Easy();
-
+            Hard bm = new Hard();
+            Gson gson = new Gson();
+            return gson.toJson(bm);
         }
+
+        Easy bm = new Easy();
 
         Gson gson = new Gson();
         return gson.toJson(bm);
@@ -63,7 +64,8 @@ public class Main {
         String row = req.params("row");
         String col = req.params("col");
         String orientation = req.params("orientation");
-        currModel = currModel.placeShip(id,row,col,orientation);
+        currModel.placeShip(id,row,col,orientation);
+        currModel.computerplaceShips();
         Gson gson = new Gson();
         return gson.toJson(currModel);
     }
@@ -91,7 +93,7 @@ public class Main {
         int rowInt = Integer.parseInt(row);
         int colInt = Integer.parseInt(col);
         currModel.scan(rowInt,colInt);
-        currModel.shootAtPlayer();
+        //currModel.shootAtPlayer();
         Gson gson = new Gson();
         return gson.toJson(currModel);
     }

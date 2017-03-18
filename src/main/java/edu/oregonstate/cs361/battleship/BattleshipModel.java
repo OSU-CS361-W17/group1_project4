@@ -10,20 +10,20 @@ import java.util.Random;
 
 public class BattleshipModel {
 
-    private Ship aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship battleship = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship submarine = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship clipper = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
-    private Ship dhingy = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
-    private Ship fisher = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
+    protected Ship aircraftCarrier;// = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship battleship;// = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship submarine;// = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship clipper;// = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
+    protected Ship dhingy;// = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
+    protected Ship fisher;// = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
 
 
-    private Ship computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7));
-    private Ship computer_battleship = new StealthShip("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
-    private Ship computer_submarine = new StealthShip("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
-    private Ship computer_clipper = new CivilianShip("Computer_Clipper", 3, new Coordinate(1, 1), new Coordinate(1, 3));
-    private Ship computer_dhingy = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
-    private Ship computer_fisher = new CivilianShip("Computer_Fisher", 2, new Coordinate(7, 1), new Coordinate(7, 2));
+    protected Ship computer_aircraftCarrier;// = new Ship("Computer_AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+    protected Ship computer_battleship;// = new StealthShip("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
+    protected Ship computer_submarine;// = new StealthShip("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
+    protected Ship computer_clipper;// = new CivilianShip("Computer_Clipper", 3, new Coordinate(1, 1), new Coordinate(1, 3));
+    protected Ship computer_dhingy;// = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
+    protected Ship computer_fisher;// = new CivilianShip("Computer_Fisher", 2, new Coordinate(7, 1), new Coordinate(7, 2));
 
 
     ArrayList<ShotData> playerHits;
@@ -39,6 +39,24 @@ public class BattleshipModel {
         playerMisses= new ArrayList<>();
         computerHits = new ArrayList<>();
         computerMisses= new ArrayList<>();
+
+        aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+        battleship = new StealthShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+        submarine = new StealthShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+        clipper = new CivilianShip("Clipper", 3, new Coordinate(0, 0), new Coordinate(0, 0));
+        dhingy = new CivilianShip("Dhingy", 1, new Coordinate(0, 0), new Coordinate(0, 0));
+        fisher = new CivilianShip("Fisher", 2, new Coordinate(0, 0), new Coordinate(0, 0));
+
+
+        computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+        computer_battleship = new StealthShip("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
+        computer_submarine = new StealthShip("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
+        computer_clipper = new CivilianShip("Computer_Clipper", 3, new Coordinate(1, 1), new Coordinate(1, 3));
+        computer_dhingy = new CivilianShip("Computer_Dhingy", 1, new Coordinate(10, 10), new Coordinate(10, 10));
+        computer_fisher = new CivilianShip("Computer_Fisher", 2, new Coordinate(7, 1), new Coordinate(7, 2));
+
+
+
     }
 
 
@@ -60,40 +78,43 @@ public class BattleshipModel {
         }
     }
 
-    public BattleshipModel placeShip(String shipName, String row, String col, String orientation) {
+    public void placeShip(String shipName, String row, String col, String orientation) {
         int rowint = Integer.parseInt(row);
         int colInt = Integer.parseInt(col);
         if(orientation.equals("horizontal")){
             if (shipName.equalsIgnoreCase("aircraftcarrier")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
+                getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
             } if(shipName.equalsIgnoreCase("battleship")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
+                getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
             } if(shipName.equalsIgnoreCase("dhingy")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
+                getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
             } if(shipName.equalsIgnoreCase("clipper")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 2));
+                getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 2));
             } if(shipName.equalsIgnoreCase("fisher")){
-                this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 1));
+                getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 1));
             }if(shipName.equalsIgnoreCase("submarine")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 1));
+                getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 1));
             }
         }else{
             //vertical
                 if (shipName.equalsIgnoreCase("aircraftcarrier")) {
-                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
+                    getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
                 } if(shipName.equalsIgnoreCase("battleship")) {
-                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
+                    getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
                 } if(shipName.equalsIgnoreCase("dhingy")) {
-                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
+                    getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
                 } if(shipName.equalsIgnoreCase("clipper")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 2, colInt));
+                    getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 2, colInt));
                 } if(shipName.equalsIgnoreCase("fisher")){
-                    this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 1, colInt));
+                    getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 1, colInt));
                 }if(shipName.equalsIgnoreCase("submarine")) {
-                    this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 1, colInt));
+                    getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 1, colInt));
                 }
         }
-        return this;
+    }
+
+    public void computerplaceShips() {
+
     }
 
     public void addToMilitaryHitList(Ship x, Coordinate coor, ArrayList<ShotData> z){
@@ -140,7 +161,6 @@ public class BattleshipModel {
         }
     }
 
-
     public void shootAtPlayer() {
 
         int max = 10;
@@ -173,7 +193,7 @@ public class BattleshipModel {
         ShotData search = new ShotData(coor, "default");
         if(playerMisses.contains(search)) {
             System.out.println("Dupe");
-            this.shootAtPlayer();
+            //this.shootAtPlayer();
         }
 
         if(aircraftCarrier.covers(coor)){
